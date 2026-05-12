@@ -47,13 +47,16 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \renewcommand{\thepage}{}
-\fancyfoot[C]{\scriptsize\textcolor{cvsoft}{Last update: May 2026}}
+
+\newcommand{\lastupdated}{May 2026}
+
+\fancyfoot[C]{\scriptsize\textcolor{cvsoft}{Last update: \lastupdated}}
 
 \fancypagestyle{plain}{%
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyfoot[C]{\scriptsize\textcolor{cvsoft}{Last update: May 2026}}
+  \fancyfoot[C]{\scriptsize\textcolor{cvsoft}{Last update: \lastupdated}}
 }
 
 %----------------------------------------------------------------------------------------
@@ -387,8 +390,8 @@ I’m a software engineer focused on backend and distributed systems. Most of my
 \hfill
 \begin{minipage}[t]{0.31\textwidth}
   \smallcard{Languages}{
-    \muted{\worldflag[width=7,framewidth=0mm]{FR} \textit{(Native)} • \worldflag[width=7,framewidth=0mm]{GB} \textit{(Fluent)}}\\[1mm]
-    \muted{Learning: \worldflag[width=7,framewidth=0mm]{IT} \textit{(B2)} • \worldflag[width=7,framewidth=0mm]{CN} \textit{(Beginner)} • \worldflag[width=7,framewidth=0mm]{ES} \textit{(Beginner)}}
+    \muted{\worldflag[width=7pt,framewidth=0mm]{FR}French \textit{(Native)} • \worldflag[width=7pt,framewidth=0mm]{GB}English \textit{(Fluent)}}\\[1mm]
+    \muted{Learning: \worldflag[width=7pt,framewidth=0mm]{IT}Italian \textit{(B2)} • \worldflag[width=7pt,framewidth=0mm]{CN}Chinese \textit{(Beginner)} • \worldflag[width=7pt,framewidth=0mm]{ES}Spanish \textit{(Beginner)}}
   }
 \end{minipage}
 
