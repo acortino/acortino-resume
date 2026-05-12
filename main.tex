@@ -1,0 +1,395 @@
+%----------------------------------------------------------------------------------------
+%   acortino — Senior Software Engineer resume
+%----------------------------------------------------------------------------------------
+\documentclass[10pt,a4paper]{article}
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{raleway}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage[a4paper,top=1cm,bottom=1cm,left=1.2cm,right=1.2cm,footskip=0.8cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage[final]{microtype}
+\usepackage{xcolor}
+\usepackage{pagecolor}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome}
+\usepackage{worldflags}
+\usepackage{fancyhdr}
+\usepackage{ragged2e}
+
+%----------------------------------------------------------------------------------------
+%   COLORS
+%----------------------------------------------------------------------------------------
+\definecolor{cvbg}{HTML}{F9F9EC}
+\definecolor{cvtext}{HTML}{141414}
+\definecolor{cvmute}{HTML}{6B6B6B}
+\definecolor{cvsoft}{HTML}{B5ADA5}
+\definecolor{cvline}{HTML}{E8E4DF}
+\definecolor{cvaccent}{HTML}{26B9A4}
+\definecolor{cvpink}{HTML}{FC0096}
+
+\pagecolor{cvbg}
+\color{cvtext}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+%----------------------------------------------------------------------------------------
+%   PAGE STYLE
+%----------------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\thepage}{}
+\fancyfoot[C]{\scriptsize\textcolor{cvsoft}{Last update: May 2026}}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\scriptsize\textcolor{cvsoft}{Last update: May 2026}}
+}
+
+%----------------------------------------------------------------------------------------
+%   BASICS
+%----------------------------------------------------------------------------------------
+\newcommand{\pink}[1]{\textcolor{cvpink}{\textbf{#1}}}
+\newcommand{\muted}[1]{\textcolor{cvmute}{#1}}
+\newcommand{\sectiongap}{\vspace{15pt}}
+
+\newcommand{\cvsect}[1]{%
+  {\small\textcolor{cvaccent}{\MakeUppercase{\textbf{#1}}}}\\[-0.2em]
+  \textcolor{cvaccent}{\rule{\linewidth}{1pt}}\\[0.4em]
+}
+
+\newcommand{\icon}[2]{%
+  \colorbox{cvaccent}{\makebox(#2,#2){\textcolor{cvbg}{\large\csname fa#1\endcsname}}}%
+}
+
+\newcommand{\icontext}[3]{%
+  \icon{#1}{#2}\hspace{0.25cm}\textcolor{cvtext}{#3}%
+}
+
+%----------------------------------------------------------------------------------------
+%   LISTS
+%----------------------------------------------------------------------------------------
+\newlist{cvbullets}{itemize}{1}
+\setlist[cvbullets]{%
+  label=\raisebox{0.2ex}{\textcolor{cvaccent}{\rule{0.65ex}{0.65ex}}},
+  leftmargin=1.1em,
+  labelsep=0.55em,
+  itemsep=1.5pt,
+  topsep=2pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+%----------------------------------------------------------------------------------------
+%   CARDS
+%----------------------------------------------------------------------------------------
+\tcbset{
+  cvcard/.style={
+    enhanced,
+    colback=cvbg,
+    colframe=cvline,
+    boxrule=0.55pt,
+    arc=2mm,
+    left=3mm,
+    right=3mm,
+    top=2.2mm,
+    bottom=2.2mm,
+    boxsep=0pt,
+    before skip=0pt,
+    after skip=0pt
+  }
+}
+
+\newcommand{\skillcard}[3]{%
+  \begin{tcolorbox}[cvcard]
+    {\small\pink{\MakeUppercase{#1}}}%
+    \hfill
+    {\scriptsize\textcolor{cvaccent}{#2}}%
+    \par\vspace{1.8mm}
+    {\small #3}
+  \end{tcolorbox}%
+}
+
+\newcommand{\entrycard}[4]{%
+  \begin{tcolorbox}[cvcard,width=\linewidth]
+    \begin{minipage}[t]{0.19\linewidth}
+      {\footnotesize\textcolor{cvmute}{#1}}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.77\linewidth}
+      {\textcolor{cvaccent}{\textbf{#2}}}%
+      \hfill
+      {\small\pink{\textbf{#3}}}
+      \par\vspace{1.7mm}
+      #4
+    \end{minipage}
+  \end{tcolorbox}
+  \vspace{2.2mm}
+}
+
+\newcommand{\smallcard}[2]{%
+  \begin{tcolorbox}[cvcard]
+    {\small\pink{\MakeUppercase{#1}}}
+    \par\vspace{1.8mm}
+    {\small #2}
+  \end{tcolorbox}%
+}
+
+%----------------------------------------------------------------------------------------
+%   TECH PILLS
+%----------------------------------------------------------------------------------------
+\newcommand{\tech}[1]{%
+  \tcbox[
+    on line,
+    colback=cvbg,
+    colframe=cvline,
+    boxrule=0.4pt,
+    arc=1.5mm,
+    left=1mm,
+    right=1mm,
+    top=0.45mm,
+    bottom=0.45mm,
+    boxsep=0pt
+  ]{\scriptsize\texttt{\textcolor{cvmute}{#1}}}%
+}
+
+\newcommand{\techline}[1]{%
+  \par\vspace{2mm}%
+  {\raggedright #1\par}%
+}
+
+
+%----------------------------------------------------------------------------------------
+%   DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+\small
+
+%----------------------------------------------------------------------------------------
+%   HEADER
+%----------------------------------------------------------------------------------------
+\begin{minipage}[t]{0.67\textwidth}\hrule height 0pt width 0pt%
+    {\Huge\textbf{Hello, I’m \pink{acortino}.}}\\[-0.1em]
+    {\Large Senior Software Engineer}\\[0.45em]
+    \textcolor{cvmute}{I build backend and real-time systems under production constraints.}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.30\textwidth}\hrule height 0pt width 0pt%
+    \small
+    \icontext{MapMarker}{12}{Strasbourg, France}\\
+    \icontext{At}{12}{\href{mailto:hello@acortino.me}{hello@acortino.me}}\\
+    \icontext{Globe}{12}{\href{https://acortino.me}{acortino.me}}\\
+    \icontext{Linkedin}{12}{\href{https://linkedin.com/in/acortino}{linkedin.com/in/acortino}}
+  \end{minipage}%
+  \par\vspace{6pt}
+  \textcolor{cvline}{\rule{\linewidth}{1pt}}
+  \vspace{6pt}
+
+%----------------------------------------------------------------------------------------
+%   PROFILE
+%----------------------------------------------------------------------------------------
+\cvsect{Profile}
+I’m a software engineer focused on backend and distributed systems. Most of my work has been around real-time processing, APIs, streaming pipelines, and integrating AI workloads into production systems. I like simplifying systems, reducing operational friction, and iterating through real-world constraints such as latency, reliability, and scale.
+
+\sectiongap
+
+%----------------------------------------------------------------------------------------
+%   SKILLS
+%----------------------------------------------------------------------------------------
+\cvsect{Skills}
+\begin{minipage}[t]{0.48\textwidth}
+  \skillcard{Core}{Daily / production}{
+ \texttt{Java} • \texttt{Python} • \texttt{SQL} \\[1mm]
+  \texttt{Spring Boot} • \texttt{Kafka} • \texttt{gRPC} \\[1mm]
+  \texttt{PostgreSQL} • \texttt{REST APIs} • \texttt{WebSocket}
+  }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+  \skillcard{Familiar with}{Used / comfortable}{
+    \texttt{Angular} • \texttt{TypeScript} • \texttt{FastAPI} • \texttt{Django} \\
+    \texttt{AWS} • \texttt{Kubernetes} • \texttt{OpenTofu/Terraform} • \texttt{Helm} \\
+    \texttt{Auth0/SCIM} • \texttt{Github Actions}
+  }
+\end{minipage}
+
+\sectiongap
+
+%----------------------------------------------------------------------------------------
+%   EXPERIENCE
+%----------------------------------------------------------------------------------------
+\cvsect{Experience}
+
+\entrycard
+{Jan. 2026 -- Present\\Ongoing\\Strasbourg, FR}
+{Sr. Software Engineer}
+{Independent Project}
+{
+  \muted{Building a medical workflow application around transcription, reporting, and AI-assisted image analysis.}
+
+  \begin{cvbullets}
+    \item Built backend services for patient case management, report generation, and resumable workflows.
+    \item Implemented a real-time transcription pipeline using WebSocket, Java, gRPC, and Python/Whisper.
+    \item Integrated external AI services for segmentation and prediction through Python gRPC workers.
+    \item Built deployment infrastructure on AWS/Kubernetes using OpenTofu and Helm.
+  \end{cvbullets}
+
+  \techline{\tech{Spring Boot} \tech{Angular} \tech{Python} \tech{gRPC} \tech{AWS} \tech{CI/CD}}
+}
+
+\entrycard
+{Feb. 2023 -- Jan. 2026\\3 years\\Palo Alto, CA, USA}
+{Sr. Software Engineer}
+{Uniphore}
+{
+  \muted{Worked on real-time AI systems for sales intelligence products.}
+
+  \begin{cvbullets}
+    \item Owned a Python service for real-time sentiment analysis integrated into a Kafka/gRPC microservice pipeline.
+    \item Reduced end-to-end latency by 84\% by replacing file-based exchange with chunked streaming.
+    \item Reduced memory usage by 70\% in a core Java service using streaming buffers.
+    \item Built a SCIM synchronization service between Okta/AD, Auth0, and internal systems.
+  \end{cvbullets}
+
+  \techline{\tech{Spring Boot} \tech{Python} \tech{Kafka} \tech{gRPC} \tech{SCIM}}
+}
+
+\entrycard
+{Aug. 2020 -- Feb. 2023\\2.6 years\\Strasbourg, FR}
+{Software Engineer}
+{Hexagone Behavioral Technology}
+{
+  \muted{Worked on multimodal emotion analysis systems processing voice, facial, and text data in real time.}
+
+  \begin{cvbullets}
+    \item Built low-latency streaming services for audio sentiment analysis using Kafka and WebSocket.
+    \item Integrated ML models into production services with validation and fallback handling.
+    \item Contributed to deployment and monitoring on OpenShift environments.
+  \end{cvbullets}
+
+  \techline{\tech{Python} \tech{Django} \tech{Kafka} \tech{OpenShift} \tech{Angular}}
+}
+
+\entrycard
+{Mar. 2018 -- Jul. 2020\\2.3 years \\Strasbourg, FR}
+{Software Engineer}
+{Oxycar}
+{
+  \muted{Worked on cross-platform mobile applications for carpooling services.}
+
+  \begin{cvbullets}
+    \item Maintained iOS and Android applications built with Angular and NativeScript.
+    \item Integrated messaging, geolocation, and payment systems.
+    \item Built CI/CD pipelines for App Store and Google Play releases.
+  \end{cvbullets}
+
+  \techline{\tech{Angular} \tech{TypeScript} \tech{NativeScript} \tech{Mobile}}
+}
+
+\entrycard
+{Sep. 2016 -- Mar. 2018\\1.6 years \\Belfort, FR}
+{Software Engineer \textit{(Co-founder)}}
+{Blueanthill}
+{
+  \muted{Built analytics tools around large-scale social media datasets during the 2017 French presidential campaign.}
+
+  \begin{cvbullets}
+    \item Built data ingestion and search services using Node.js and Elasticsearch.
+    \item Processed and indexed more than 20M tweets.
+    \item Developed dashboards for real-time exploration and visualization.
+  \end{cvbullets}
+
+  \techline{\tech{Node.js} \tech{AngularJS} \tech{Elasticsearch}}
+}
+
+\entrycard
+{Sep. 2013 -- Sep. 2016\\3 years\\Montbéliard, FR}
+{Software Engineer \textit{(Apprentice)}}
+{Segula Technologies}
+{
+  \muted{Developed internal engineering tools and simulation software for automotive projects.}
+
+  \begin{cvbullets}
+    \item Built automation tools around CATIA workflows.
+    \item Developed a thermal simulation tool for automotive A/C systems.
+    \item Contributed to a prototype in-car interface presented at the Geneva Auto Show.
+  \end{cvbullets}
+
+  \techline{\tech{C++} \tech{Delphi} \tech{CATIA}}
+}
+
+\entrycard
+{Mar. 2013 -- Jul. 2013\\0.4 years\\Belfort, FR}
+{Web Developer \textit{(Intern)}}
+{Trinaps}
+{
+  \muted{Built internal web tools and deployed network access solutions in real-world environments.}
+
+  \begin{cvbullets}
+    \item Developed internal Django web tools.
+    \item Helped deploy a captive portal system for Les Eurockéennes festival.
+  \end{cvbullets}
+
+  \techline{\tech{Python} \tech{Django}}
+}
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION
+%----------------------------------------------------------------------------------------
+\sectiongap
+\cvsect{Education}
+
+\entrycard
+{2013 -- 2016\\Montbéliard, FR}
+{Engineering Degree}
+{Université de Belfort Montbéliard}
+{Computer Science — Information Systems}
+
+\entrycard
+{2012 -- 2013\\Belfort, FR}
+{Bachelor’s Degree \textit{(Licence)}}
+{IUT Belfort Montbéliard}
+{Web \& Mobile Development — System Administration}
+
+\entrycard
+{2007 -- 2013\\Belfort, FR}
+{DUT \textit{(BTEC Higher National Diploma)}}
+{IUT Belfort Montbéliard}
+{Computer Science}
+
+%----------------------------------------------------------------------------------------
+%   OUTSIDE WORK
+%----------------------------------------------------------------------------------------
+\sectiongap
+\cvsect{Outside Work}
+
+\begin{minipage}[t]{0.31\textwidth}
+  \smallcard{Reading}{
+    \muted{Emil Cioran • Daniel Quinn • Albert Camus • George Orwell • Chuck Palahniuk • Luke Rhinehart • Noam Chomsky • Chinese classics}
+  }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \smallcard{Interests}{
+    \muted{Animal behavior (evolution, biomimicry, edge-cases) • renovation • cooking • small automation tools}
+  }
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.31\textwidth}
+  \smallcard{Languages}{
+    \muted{\worldflag[width=7,framewidth=0mm]{FR} \textit{(Native)} • \worldflag[width=7,framewidth=0mm]{GB} \textit{(Fluent)}}\\[1mm]
+    \muted{Learning: \worldflag[width=7,framewidth=0mm]{IT} \textit{(B2)} • \worldflag[width=7,framewidth=0mm]{CN} \textit{(Beginner)} • \worldflag[width=7,framewidth=0mm]{ES} \textit{(Beginner)}}
+  }
+\end{minipage}
+
+\end{document}
