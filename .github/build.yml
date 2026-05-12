@@ -36,7 +36,7 @@ jobs:
 
       - name: Rename PDF
         run: |
-          mv main.pdf resume.pdf
+          mv main.pdf acortino_resume.pdf
 
       - name: Commit PDF
         run: |
