@@ -1,0 +1,215 @@
+profile:
+  name: Anthony Cortinovis
+  title: Senior Software Engineer
+  location: Strasbourg, France
+  email: hello@acortino.me
+  website: acortino.me
+  linkedin: linkedin.com/in/acortino
+  github: github.com/acortino
+  summary: >
+    I work mostly on backend systems, real-time processing, and production AI integrations.
+    I enjoy taking complex pipelines and making them faster, simpler, and easier to run in production.
+
+languages:
+  - language: French
+    level: native
+  - language: English
+    level: fluent
+  - language: Italian
+    level: B2
+  - language: Spanish
+    level: beginner (currently learning)
+  - language: Chinese
+    level: beginner (currently learning)
+
+skills:
+  - category: Core Backend
+    items:
+      - Java
+      - Spring Boot
+      - Python
+      - SQL
+      - Microservices
+      - Distributed Services
+
+  - category: Frontend
+    items:
+      - Angular
+      - TypeScript
+
+  - category: Distributed and Real-Time Systems
+    items:
+      - Kafka
+      - gRPC
+      - WebSocket
+      - streaming pipelines
+      - event-driven architecture
+      - scalability
+      - performance optimization
+
+  - category: Cloud and Infrastructure
+    items:
+      - Docker
+      - Kubernetes
+      - AWS
+      - OpenTofu/Terraform
+      - CI/CD
+
+  - category: Testing
+    items:
+      - TDD
+      - Unit Testing
+      - Mockito
+      - JUnit
+
+  - category: Engineering Practices
+    items:
+      - Agile/Scrum collaboration
+      - technical ownership
+      - system design
+      - production troubleshooting
+
+experiences:
+  - company: Freelance
+    role: Sr. Software Engineer
+    location: Belfort, France
+    dates: Feb. 2026 -- Present
+    summary: Building a medical workflow application around transcription, reporting, and AI-assisted image analysis.
+    bullets:
+      - Independently building a medical workflow application for transcription, reporting, and AI-assisted image analysis.
+      - Designed Spring Boot backend services and RESTful APIs for patient case management, report generation, file metadata, and resumable workflows.
+      - Implemented a real-time transcription pipeline using WebSocket audio streaming, Java, gRPC, and Python/Whisper workers to support low-latency clinical reporting workflows.
+      - Integrated AI segmentation and prediction services through Python gRPC workers and asynchronous processing patterns.
+      - Containerized services with Docker and built AWS/Kubernetes deployment automation using Helm, OpenTofu/Terraform, and CI/CD workflows
+    technologies:
+      - Java
+      - Spring Boot
+      - Angular
+      - Python
+      - WebSocket
+      - gRPC
+      - Docker
+      - Kubernetes
+      - AWS
+      - OpenTofu/Terraform
+      - CI/CD
+  - company: Uniphore
+    role: Sr. Software Engineer
+    location: Palo Alto, CA, USA
+    dates: Feb. 2023 -- Jan. 2026
+    summary: Worked on real-time AI systems for sales intelligence products.
+    bullets:
+      - Owned a Python service for real-time sentiment analysis integrated into a Kafka/gRPC microservice pipeline for AI sales intelligence products.
+      - Led a performance redesign from file-based exchange to chunked streaming, reducing end-to-end latency by 84% and improving real-time responsiveness.
+      - Optimized a core Java service with streaming buffers, reducing memory usage by 70% and improving scalability under production constraints.
+      - Built a SCIM synchronization microservice connecting Okta/Active Directory, Auth0, and internal systems for enterprise identity lifecycle automation.
+      - Applied TDD and mock-based unit testing on Java/Spring Boot services using JUnit and Mockito to reduce regression risk.
+      - Collaborated with product, ML, QA, and platform teams in Agile delivery cycles to ship production-grade real-time AI capabilities.
+    technologies:
+      - Java
+      - Spring Boot
+      - Python
+      - Kafka
+      - gRPC
+      - Microservices
+      - SCIM
+      - Active Directory
+  - company: Hexagone Behavioral Technology (acquired by Uniphore)
+    role: Software Engineer / Sole Technical Owner
+    location: Strasbourg, France
+    dates: Aug. 2020 -- Feb. 2023
+    summary: Owned the technical development and operation of a real-time multimodal emotion analysis platform.
+    bullets:
+      - Acted as the sole technical employee, covering backend, frontend, infrastructure, deployments, production troubleshooting, and GDPR-related technical requirements.
+      - Integrated voice, facial, text, and video ML models in collaboration with multiple data scientists, turning research outputs into production features.
+      - Improved live video emotion display to below 200 ms latency for real-time multimodal analysis workflows.
+      - Developed Kafka and WebSocket pipelines for real-time audio/video processing, model orchestration, and live result delivery.
+      - Built a deepfake detection feature for a France TV project by integrating a data scientist’s model into the existing platform.
+      - Maintained OpenShift deployments and improved reliability, monitoring, scalability, and operational maintainability.
+    technologies:
+        - Python
+        - Django
+        - Kafka
+        - WebSocket
+        - Angular
+        - TypeScript
+        - OpenShift
+        - Machine Learning Integration
+        - Real-Time Audio/Video Processing
+  - company: Oxycar
+    role: Software Engineer
+    location: Mutzig, France
+    dates: Mar. 2018 -- Jul. 2020
+    summary: Worked on cross-platform mobile applications for carpooling services.
+    bullets:
+      - Maintained cross-platform iOS and Android applications for carpooling services using Angular, TypeScript, and NativeScript.
+      - Integrated messaging, geolocation, payment workflows, and RESTful API connections across mobile applications.
+      - Built CI/CD pipelines for App Store and Google Play releases, improving release repeatability and reducing manual deployment work.
+    technologies:
+      - Angular
+      - TypeScript
+      - NativeScript
+      - Mobile
+      - CI/CD
+  - company: Blueanthill
+    role: Software Engineer / Co-founder
+    location: Belfort, France
+    dates: Sep. 2016 -- Mar 2018
+    summary: Built analytics tools around large-scale social media datasets during the 2017 French presidential campaign.
+    bullets:
+      - Co-founded and led development of analytics tools for large-scale social media datasets, processing 20M+ tweets during the 2017 French presidential campaign.
+      - Built data ingestion, search, and dashboard services using Node.js, Elasticsearch, and AngularJS.
+      - Processed and indexed more than 20M tweets for real-time exploration, search, and visualization.
+      - Managed engineering priorities, product decisions, and stakeholder demonstrations as co-founder.
+    technologies:
+      - Node.js
+      - AngularJS
+      - Elasticsearch
+      - Real-time Analytics
+
+education:
+  - diploma: Engineering Degree, Computer Science - Information Systems
+    location: Université de Belfort Montbéliard, Montbéliard, France
+    dates: 2013 - 2016
+  - diploma: Bachelor’s Degree / Licence, Web and Mobile Development - System Administration
+    location: IUT Belfort Montbéliard, Belfort, France
+    dates: 2012 - 2013
+  - diploma: DUT / BTEC Higher National Diploma, Computer Science
+    location: IUT Belfort Montbéliard, Belfort, France
+    dates: 2010 - 2012
+
+projects:
+  - name: LaTeX Automated Resume
+    bullets:
+      - Built an automated resume generation pipeline using YAML as a source of truth and LaTeX templates for ATS-friendly and design-oriented PDF outputs.
+      - Added CI/CD compilation to keep generated resumes reproducible and version-controlled.
+    link: https://github.com/acortino/acortino-resume
+    technologies:
+      - LaTeX
+      - Python
+      - YAML
+      - GitHub Actions
+      - CI/CD
+
+  - name: Before Zero
+    bullets:
+      - Built a native Swift/iOS application to deepen mobile architecture and user-facing workflow design.
+      - Practiced clean app structure, state management, local persistence, and production-style mobile development.
+    link: https://github.com/acortino/beforezero
+    technologies:
+      - Swift
+      - iOS
+      - Mobile
+      - User Interface
+
+  - name: Drone Relay Observability Platform
+    bullets:
+      - Building a Datadog-style observability platform with agent-side collection, telemetry ingestion, metrics processing, and backend APIs.
+      - Implementing components in Go, Java, and Python to practice distributed systems, performance engineering, microservices, and scalable telemetry pipelines.
+    link: https://github.com/drone-relay
+    technologies:
+      - Go
+      - Java
+      - Python
+      - Docker
+      - Distributed Systems

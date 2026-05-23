@@ -1,13 +1,19 @@
-name: Build Resume PDF
+name: Build Resume PDFs
 
 on:
   push:
     branches:
       - main
+    paths-ignore:
+      - "dist/**"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: build-resume-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-resume:
@@ -17,11 +23,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install LaTeX
+      - name: Install LaTeX and tools
         run: |
           sudo apt-get update
-
           sudo apt-get install -y \
+            latexmk \
+            poppler-utils \
             texlive-latex-base \
             texlive-latex-extra \
             texlive-fonts-extra \
@@ -29,28 +36,61 @@ jobs:
             texlive-lang-european \
             texlive-pictures
 
-      - name: Update last updated date
-        run: |
-          CURRENT_DATE="$(date -u '+%B %Y')"
-          sed -i "s/\\\\newcommand{\\\\lastupdated}{.*}/\\\\newcommand{\\\\lastupdated}{$CURRENT_DATE}/" main.tex
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      - name: Compile PDF
+      - name: Install Python dependencies
         run: |
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
-          pdflatex -interaction=nonstopmode -halt-on-error main.tex
+          python -m pip install --upgrade pip
+          pip install pyyaml jinja2
 
-      - name: Rename PDF
+      - name: Render LaTeX files
         run: |
-          mv main.pdf acortino_resume.pdf
+          python scripts/render_resume.py
 
-      - name: Commit PDF
+          test -f build/resume-ats.tex
+          test -f build/resume-design.tex
+
+      - name: Compile ATS PDF
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error \
+            -output-directory=build \
+            build/resume-ats.tex
+
+      - name: Compile Design PDF
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error \
+            -output-directory=build \
+            build/resume-design.tex
+
+      - name: Prepare output files
+        run: |
+          mkdir -p dist
+
+          cp build/resume-ats.pdf dist/anthony-cortinovis-resume-ats.pdf
+          cp build/resume-design.pdf dist/anthony-cortinovis-resume.pdf
+
+      - name: ATS text extraction check
+        run: |
+          pdftotext dist/anthony-cortinovis-resume-ats.pdf build/ats.txt
+
+          grep -Fq "Anthony Cortinovis" build/ats.txt
+          grep -Fq "Senior Software Engineer" build/ats.txt
+          grep -Fq "Java" build/ats.txt
+          grep -Fq "Spring Boot" build/ats.txt
+          grep -Fq "Kafka" build/ats.txt
+          grep -Fq "gRPC" build/ats.txt
+
+      - name: Commit generated PDFs
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add acortino_resume.pdf main.tex
+          git add dist/*.pdf
 
           git diff --cached --quiet && exit 0
 
-          git commit -m "chore: update resume pdf"
+          git commit -m "chore: update generated resume PDFs [skip ci]"
           git push

@@ -1,0 +1,181 @@
+%----------------------------------------------------------------------------------------
+%   {{ profile.name | latex }} — {{ profile.title | latex }} resume (ATS-friendly version)
+%   Generated from resume-data.yml with Jinja2
+%----------------------------------------------------------------------------------------
+\documentclass[10pt,a4paper]{article}
+
+%----------------------------------------------------------------------------------------
+%   PDF TEXT EXTRACTION / ATS SAFETY
+%----------------------------------------------------------------------------------------
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[a4paper,top=1.25cm,bottom=1.25cm,left=1.35cm,right=1.35cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage[final]{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{ragged2e}
+
+%----------------------------------------------------------------------------------------
+%   COLORS - subtle enough for ATS, useful for humans
+%----------------------------------------------------------------------------------------
+\definecolor{cvtext}{HTML}{151515}
+\definecolor{cvmute}{HTML}{5F6368}
+\definecolor{cvline}{HTML}{D8DEE4}
+\definecolor{cvaccent}{HTML}{087E8B}
+\definecolor{cvaccentdark}{HTML}{0B4F6C}
+
+\color{cvtext}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\urlstyle{same}
+\pagestyle{empty}
+\RaggedRight
+
+\hypersetup{
+  pdftitle={{ "{" }}{{ profile.name | latex }} - Resume{{ "}" }},
+  pdfauthor={{ "{" }}{{ profile.name | latex }}{{ "}" }},
+  pdfsubject={{ "{" }}{{ profile.title | latex }}{{ "}" }},
+  pdfkeywords={resume, software engineer, backend, distributed systems, real-time systems}
+}
+
+%----------------------------------------------------------------------------------------
+%   LISTS
+%----------------------------------------------------------------------------------------
+\newlist{cvitems}{itemize}{1}
+\setlist[cvitems]{
+  label=\textcolor{cvaccent}{\raisebox{0.15ex}{\scriptsize\textbullet}},
+  leftmargin=1.25em,
+  labelsep=0.45em,
+  itemsep=1.3pt,
+  topsep=2.5pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+%----------------------------------------------------------------------------------------
+%   MACROS
+%----------------------------------------------------------------------------------------
+\newcommand{\sectiontitle}[1]{ %
+  \vspace{9pt}%
+  {\large\bfseries\textcolor{cvaccentdark}{#1}}\par
+  \vspace{2pt}%
+  \textcolor{cvline}{\rule{\linewidth}{0.6pt}}\par
+  \vspace{4pt}%
+}
+
+\newcommand{\skillline}[2]{ %
+  \textbf{#1:} #2\par\vspace{2.5pt}%
+}
+
+\newcommand{\entryheading}[4]{ %
+  \Needspace{7\baselineskip}%
+  {\textbf{#1}} --- {\textbf{#2}}\par
+  {\small\textcolor{cvmute}{#3 | #4}}\par
+}
+
+\newcommand{\projectheading}[2]{ %
+  \Needspace{5\baselineskip}%
+  {\textbf{#1}}% 
+  \ifx\relax#2\relax\else{\small\textcolor{cvmute}{ | #2}}\fi\par
+}
+
+\newcommand{\techline}[1]{ %
+  \Needspace{2\baselineskip}%
+  \vspace{1pt}{\small\textbf{Technologies:} #1}\par\vspace{5pt}%
+}
+
+%----------------------------------------------------------------------------------------
+%   DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+\small
+
+%----------------------------------------------------------------------------------------
+%   HEADER - plain text, no icons, no header/footer dependency
+%----------------------------------------------------------------------------------------
+{\LARGE\bfseries {{ profile.name | latex }}}\par
+\vspace{1.5pt}
+{\large\textcolor{cvaccentdark}{ {{ profile.title | latex }} }}\par
+\vspace{3pt}
+{{ profile.location | latex }} | \href{mailto:{{ profile.email | url }}}{{ "{" }}{{ profile.email | latex }}{{ "}" }} | \href{https://{{ profile.website | url }}}{{ "{" }}{{ profile.website | latex }}{{ "}" }} | \href{https://{{ profile.linkedin | url }}}{{ "{" }}{{ profile.linkedin | latex }}{{ "}" }} | \href{https://{{ profile.github | url }}}{{ "{" }}{{ profile.github | latex }}{{ "}" }}\par
+\vspace{3pt}
+{\small\textcolor{cvmute}{Last updated: {{ last_updated | default("", true) | latex }}}}\par
+\vspace{5pt}
+\textcolor{cvaccent}{\rule{\linewidth}{1pt}}
+
+%----------------------------------------------------------------------------------------
+%   SUMMARY
+%----------------------------------------------------------------------------------------
+\sectiontitle{Summary}
+{{ profile.summary | latex }}
+
+%----------------------------------------------------------------------------------------
+%   SKILLS
+%----------------------------------------------------------------------------------------
+\sectiontitle{Technical Skills}
+{% for skill in skills %}
+\skillline{ {{ skill.category | latex }} }{ {% for item in skill["items"] %}{{ item | latex }}{% if not loop.last %}, {% endif %}{% endfor %} }
+{% endfor %}
+
+%----------------------------------------------------------------------------------------
+%   EXPERIENCE
+%----------------------------------------------------------------------------------------
+\sectiontitle{Professional Experience}
+{% for exp in experiences %}
+\entryheading{ {{ exp.role | latex }} }{ {{ exp.company | latex }} }{ {{ exp.location | latex }} }{ {{ exp.dates | latex }} }
+{% if exp.summary %}{\small\textcolor{cvmute}{ {{ exp.summary | latex }} }}\par{% endif %}
+\begin{cvitems}
+{% for bullet in exp["bullets"] %}
+  \item {{ bullet | latex }}
+{% endfor %}
+\end{cvitems}
+{% if exp["technologies"] %}\techline{ {% for tech in exp["technologies"] %}{{ tech | latex }}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
+{% endfor %}
+
+%----------------------------------------------------------------------------------------
+%   PROJECTS
+%----------------------------------------------------------------------------------------
+{% if projects %}
+\sectiontitle{Selected Projects}
+{% for project in projects %}
+\projectheading{ {{ project.name | latex }} }{ {% if project.link %}\href{ {{ project.link | url }} }{ {{ project.link | display_url | latex }} }{% endif %} }
+\begin{cvitems}
+{% for bullet in project["bullets"] %}
+  \item {{ bullet | latex }}
+{% endfor %}
+\end{cvitems}
+{% if project["technologies"] %}\techline{ {% for tech in project["technologies"] %}{{ tech | latex }}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
+{% endfor %}
+{% endif %}
+
+%----------------------------------------------------------------------------------------
+%   EDUCATION
+%----------------------------------------------------------------------------------------
+{% if education %}
+\sectiontitle{Education}
+{% for edu in education %}
+\Needspace{3\baselineskip}%
+\textbf{ {{ edu.diploma | latex }} }\par
+{\small\textcolor{cvmute}{ {{ edu.location | latex }} | {{ edu.dates | latex }} }}\par\vspace{5pt}
+{% endfor %}
+{% endif %}
+
+%----------------------------------------------------------------------------------------
+%   LANGUAGES
+%----------------------------------------------------------------------------------------
+{% if languages %}
+\sectiontitle{Languages}
+{% for lang in languages %}{{ lang.language | latex }} ({{ lang.level | latex }}){% if not loop.last %}, {% endif %}{% endfor %}
+{% endif %}
+
+\end{document}
