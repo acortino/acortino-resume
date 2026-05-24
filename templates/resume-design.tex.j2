@@ -118,20 +118,20 @@
 }
 
 \newcommand{\skillcard}[2]{ %
-  \begin{tcolorbox}[cvcard]
-    {\small\pink{\MakeUppercase{#1}}}%
-    \par\vspace{1.8mm}
-    {\small #2}
+  \begin{tcolorbox}[cvcard,height=20mm,valign=center]
+    {\small\pink{\MakeUppercase{#1}}}
+    \par\vspace{1.4mm}
+    {\small\setlength{\baselineskip}{1.08em}#2\par}
   \end{tcolorbox}%
 }
 
 \newcommand{\entrycard}[4]{ %
   \begin{tcolorbox}[cvcard,width=\linewidth]
-    \begin{minipage}[t]{0.19\linewidth}
+    \begin{minipage}[t]{0.16\linewidth}
       {\footnotesize\textcolor{cvmute}{#1}}
     \end{minipage}%
     \hfill
-    \begin{minipage}[t]{0.77\linewidth}
+    \begin{minipage}[t]{0.82\linewidth}
       {\textcolor{cvaccent}{\textbf{#2}}}%
       \hfill
       {\small\pink{\textbf{#3}}}
@@ -216,7 +216,10 @@
   \skillcard{ {{ row[1].category | latex }} }{ {{ row[1]['items'] | map('latex') | join(' • ') }} }
 {% endif %}
 \end{minipage}
-{% if not loop.last %}\vspace{2.4mm}{% endif %}
+{% if not loop.last %}
+\par\vspace{1.5mm}
+
+{% endif %}
 {% endfor %}
 
 \sectiongap
@@ -253,7 +256,7 @@
 \cvsect{Selected Personal Projects}
 {% for project in projects %}
 \entrycard
-{ {{ project.link | display_url | latex }} }
+{ }
 { {{ project.name | latex }} }
 { Project }
 {
@@ -266,7 +269,7 @@
 {% endif %}
 
 {% if project.link %}
-  \textbf{Link:} \href{ {{ project.link | url }} }{ {{ project.link | display_url | latex }} }
+  \muted{ Link: \href{ {{ project.link | url }} }{ {{ project.link | display_url | latex }} } }
 {% endif %}
 {% if project.technologies %}
   \techline{ {% for tech in project.technologies %}\tech{ {{ tech | latex }} } {% endfor %}}
@@ -285,8 +288,10 @@
 \entrycard
 { {{ edu.dates | latex }} }
 { {{ edu.diploma | latex }} }
-{ {{ edu.location | latex }} }
-{}
+{ }
+{
+\muted { {{ edu.location | latex }} }
+}
 {% endfor %}
 {% endif %}
 
