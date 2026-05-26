@@ -7,8 +7,7 @@ profile:
   linkedin: linkedin.com/in/acortino
   github: github.com/acortino
   summary: >
-    I work mostly on backend systems, real-time processing, and production AI integrations.
-    I enjoy taking complex pipelines and making them faster, simpler, and easier to run in production.
+    Senior backend software engineer specialized in distributed systems, real-time processing, and production-grade AI integrations. Experienced in designing cloud-native services, deploying AI pipelines into production, and improving systems under strong performance, scalability, and reliability constraints.
 
 languages:
   - language: French
