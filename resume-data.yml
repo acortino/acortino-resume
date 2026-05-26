@@ -30,12 +30,6 @@ skills:
       - Python
       - SQL
       - Microservices
-      - Distributed Services
-
-  - category: Frontend
-    items:
-      - Angular
-      - TypeScript
 
   - category: Distributed and Real-Time Systems
     items:
@@ -74,13 +68,14 @@ experiences:
     role: Sr. Software Engineer
     location: Belfort, France
     dates: Feb. 2026 -- Present
-    summary: Building a medical workflow application around transcription, reporting, and AI-assisted image analysis.
+    summary: Designing and building a patient management and surgical decision-support platform for surgeons, integrating longitudinal follow-up, DICOM imaging workflows, AI transcription, clinical data extraction, eligibility decision trees, and comparative analytics dashboards.
     bullets:
-      - Independently building a medical workflow application for transcription, reporting, and AI-assisted image analysis.
-      - Designed Spring Boot backend services and RESTful APIs for patient case management, report generation, file metadata, and resumable workflows.
-      - Implemented a real-time transcription pipeline using WebSocket audio streaming, Java, gRPC, and Python/Whisper workers to support low-latency clinical reporting workflows.
-      - Integrated AI segmentation and prediction services through Python gRPC workers and asynchronous processing patterns.
-      - Containerized services with Docker and built AWS/Kubernetes deployment automation using Helm, OpenTofu/Terraform, and CI/CD workflows
+      - Independently designed and built a patient management and surgical decision-support platform for surgeons, using Spring Boot, Angular, and REST APIs to manage patient onboarding, clinical data collection, and surgical journey tracking.
+      - Designed the core domain model and backend services for longitudinal patient follow-up, including scheduled forms, VAS/ODI score collection, multi-year postoperative tracking, and rule-based clinical alerting.
+      - Developed clinical workflow features including DICOM image viewing, surgical eligibility decision trees, and comparative analytics dashboards across patient demographics, procedures, devices, and clinical outcomes.
+      - Integrated AI-assisted modules for pathology analysis, patient eligibility assessment, and preoperative decision support around medical device usage.
+      - Built a real-time transcription and clinical information extraction pipeline with WebSocket audio streaming, Java, gRPC, and Python/Whisper workers to structure surgeon-patient interactions.
+      - Industrialized deployment with Docker, AWS, Kubernetes, Helm, OpenTofu/Terraform, and CI/CD workflows.
     technologies:
       - Java
       - Spring Boot
