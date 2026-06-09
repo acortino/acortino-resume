@@ -196,14 +196,16 @@ projects:
       - Mobile
       - User Interface
 
-  - name: Drone Relay Observability Platform
+  - name: ARSO — Autonomous Remote Space & weather Observatory
     bullets:
-      - Building a Datadog-style observability platform with agent-side collection, telemetry ingestion, metrics processing, and backend APIs.
-      - Implementing components in Go, Java, and Python to practice distributed systems, performance engineering, microservices, and scalable telemetry pipelines.
-    link: https://github.com/drone-relay
+      - Building an open-source remote observatory platform for satellite tracking, sky imaging, weather sensing, and distributed node coordination.
+      - Implemented a Go CLI integrating CelesTrak satellite data, target resolution, node configuration, and machine-readable outputs for automation workflows.
+      - Exploring mission-oriented software patterns - telemetry collection, observability, degraded-network operation, edge deployment, and performance-conscious system design.
+    link: https://github.com/open-arso
     technologies:
       - Go
-      - Java
       - Python
       - Docker
+      - Edge Computing
+      - Telemetry
       - Distributed Systems
