@@ -2,7 +2,7 @@
 %   {{ profile.name | latex }} — {{ profile.title | latex }} resume (ATS-friendly version)
 %   Generated from resume-data.yml with Jinja2
 %----------------------------------------------------------------------------------------
-\documentclass[10pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 
 %----------------------------------------------------------------------------------------
 %   PDF TEXT EXTRACTION / ATS SAFETY
@@ -17,7 +17,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \renewcommand*\familydefault{\sfdefault}
-\usepackage[a4paper,top=1.25cm,bottom=1.25cm,left=1.35cm,right=1.35cm]{geometry}
+\usepackage[a4paper,top=1.4cm,bottom=1.35cm,left=1.55cm,right=1.55cm]{geometry}
 \usepackage[hidelinks]{hyperref}
 \usepackage[final]{microtype}
 \usepackage{xcolor}
@@ -40,6 +40,10 @@
 \urlstyle{same}
 \pagestyle{empty}
 \RaggedRight
+% Avoid splitting keywords across lines (e.g. postoper-ative in extracted text).
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\setlength{\emergencystretch}{1.5em}
 
 \hypersetup{
   pdftitle={{ "{" }}{{ profile.name | latex }} - Resume{{ "}" }},
@@ -56,7 +60,7 @@
   label=\textcolor{cvaccent}{\raisebox{0.15ex}{\scriptsize\textbullet}},
   leftmargin=1.25em,
   labelsep=0.45em,
-  itemsep=1.3pt,
+  itemsep=1.5pt,
   topsep=2.5pt,
   parsep=0pt,
   partopsep=0pt
@@ -74,13 +78,13 @@
 }
 
 \newcommand{\skillline}[2]{ %
-  \textbf{#1:} #2\par\vspace{2.5pt}%
+  \textbf{#1\unskip:} #2\par\vspace{2.5pt}%
 }
 
 \newcommand{\entryheading}[4]{ %
-  \Needspace{7\baselineskip}%
-  {\textbf{#1}} --- {\textbf{#2}}\par
-  {\small\textcolor{cvmute}{#3 | #4}}\par
+  \Needspace{9\baselineskip}%
+  {\textbf{#1}} | {\textbf{#2}}\par
+  {\small\textcolor{cvmute}{#4 | #3}}\par
 }
 
 \newcommand{\projectheading}[2]{ %
@@ -91,7 +95,7 @@
 
 \newcommand{\techline}[1]{ %
   \Needspace{2\baselineskip}%
-  \vspace{1pt}{\small\textbf{Technologies:} #1}\par\vspace{5pt}%
+  \vspace{1pt}{\small\textbf{Technologies:} #1}\par\vspace{4pt}%
 }
 
 %----------------------------------------------------------------------------------------
@@ -107,9 +111,8 @@
 \vspace{1.5pt}
 {\large\textcolor{cvaccentdark}{ {{ profile.title | latex }} }}\par
 \vspace{3pt}
-{{ profile.location | latex }} | \href{mailto:{{ profile.email | url }}}{{ "{" }}{{ profile.email | latex }}{{ "}" }} | \href{https://{{ profile.website | url }}}{{ "{" }}{{ profile.website | latex }}{{ "}" }} | \href{https://{{ profile.linkedin | url }}}{{ "{" }}{{ profile.linkedin | latex }}{{ "}" }} | \href{https://{{ profile.github | url }}}{{ "{" }}{{ profile.github | latex }}{{ "}" }}\par
-\vspace{3pt}
-{\small\textcolor{cvmute}{Last updated: {{ last_updated | default("", true) | latex }}}}\par
+{{ profile.location | latex }} | \href{mailto:{{ profile.email | url }}}{{ "{" }}{{ profile.email | latex }}{{ "}" }} | \href{https://{{ profile.website | url }}}{{ "{" }}{{ profile.website | latex }}{{ "}" }}\par
+\href{https://{{ profile.linkedin | url }}}{{ "{" }}{{ profile.linkedin | latex }}{{ "}" }} | \href{https://{{ profile.github | url }}}{{ "{" }}{{ profile.github | latex }}{{ "}" }}\par
 \vspace{5pt}
 \textcolor{cvaccent}{\rule{\linewidth}{1pt}}
 
@@ -124,7 +127,7 @@
 %----------------------------------------------------------------------------------------
 \sectiontitle{Technical Skills}
 {% for skill in skills %}
-\skillline{ {{ skill.category | latex }} }{ {% for item in skill["items"] %}{{ item | latex }}{% if not loop.last %}, {% endif %}{% endfor %} }
+\skillline{ {{- skill.category | latex -}} }{ {% for item in skill["items"] %}{{ item | latex }}{% if not loop.last %}, {% endif %}{% endfor %} }
 {% endfor %}
 
 %----------------------------------------------------------------------------------------
@@ -132,7 +135,7 @@
 %----------------------------------------------------------------------------------------
 \sectiontitle{Professional Experience}
 {% for exp in experiences %}
-\entryheading{ {{ exp.role | latex }} }{ {{ exp.company | latex }} }{ {{ exp.location | latex }} }{ {{ exp.dates | latex }} }
+\entryheading{ {{- exp.role | latex -}} }{ {{- exp.company | latex -}} }{ {{- exp.location | latex -}} }{ {{- exp.dates | latex -}} }
 {% if exp.summary %}{\small\textcolor{cvmute}{ {{ exp.summary | latex }} }}\par{% endif %}
 \begin{cvitems}
 {% for bullet in exp["bullets"] %}
@@ -148,7 +151,7 @@
 {% if projects %}
 \sectiontitle{Selected Projects}
 {% for project in projects %}
-\projectheading{ {{ project.name | latex }} }{ {% if project.link %}\href{ {{ project.link | url }} }{ {{ project.link | display_url | latex }} }{% endif %} }
+\projectheading{ {{- project.name | latex -}} }{ {% if project.link %}\href{ {{- project.link | url -}} }{ {{- project.link | display_url | latex -}} }{% endif %} }
 \begin{cvitems}
 {% for bullet in project["bullets"] %}
   \item {{ bullet | latex }}
